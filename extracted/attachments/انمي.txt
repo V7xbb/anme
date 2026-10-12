@@ -1,0 +1,582 @@
+You are a senior full-stack engineer, software architect, UI/UX designer, database engineer, security specialist, and DevOps engineer.
+
+Your task is to BUILD a complete, production-oriented anime discovery and streaming platform named:
+
+KARTIFY ANIME
+Arabic brand: كارتيفاي أنمي
+Tagline: عالمك، قصتك، أنميك.
+
+IMPORTANT:
+Do not create a demo, static mockup, landing-page-only project, or frontend with fake functionality.
+
+Build a real application with persistent database storage, real APIs, secure authentication, a complete admin dashboard, responsive design, error handling, and deployment documentation.
+
+Work directly in the current project directory. Inspect existing files first. Preserve useful existing functionality, but replace prototype code where necessary.
+
+Do not stop after creating a plan. Implement the application, install compatible dependencies when possible, run available checks, and fix errors.
+
+If an external service requires credentials, implement its integration properly, provide an environment-variable template, and document the exact setup steps. Never fabricate credentials or pretend an integration works without testing it.
+
+==================================================
+
+1. PRODUCT VISION
+   ==================================================
+
+Build a comprehensive Arabic-first anime platform featuring:
+
+- Anime discovery and search.
+- Anime details and metadata.
+- Seasons and episode listings when reliable data is available.
+- Arabic-subtitled and Arabic-dubbed categories when verified information is available.
+- Egyptian-dubbed category when supported by reliable metadata.
+- Anime movies.
+- Recently released anime.
+- Popular and top-rated anime.
+- Watchlist and favorites.
+- Continue-watching functionality when playback sources support it.
+- External official streaming links.
+- Authorized video playback.
+- Admin-managed content and streaming sources.
+- Automatic metadata synchronization.
+- Optional bilingual Arabic and English interface.
+
+Never claim that an episode is playable unless a valid, authorized playback source is configured.
+
+Do not scrape protected streaming services, bypass DRM, defeat access controls, or copy copyrighted episodes without permission.
+
+==================================================
+2. TECHNOLOGY STACK
+
+Use a maintainable, production-oriented stack:
+
+Frontend:
+
+- Next.js with App Router.
+- TypeScript.
+- Tailwind CSS.
+- Accessible reusable components.
+- RTL-first Arabic layout.
+- Responsive mobile navigation.
+- Server-rendered public pages where appropriate.
+
+Backend:
+
+- Next.js server-side routes or server actions.
+- Strict input validation.
+- Secure authorization checks.
+- Rate limiting for sensitive endpoints.
+- Centralized error handling.
+
+Database and authentication:
+
+- Supabase PostgreSQL.
+- Supabase Auth.
+- Row Level Security.
+- Database migrations.
+- Secure server-side administration.
+
+Use compatible, stable dependency versions and verify the actual environment before choosing them.
+
+Do not expose database service-role keys, API secrets, or privileged tokens in client-side code.
+
+==================================================
+3. VISUAL DESIGN
+
+Create a premium anime streaming interface inspired by modern entertainment platforms without copying any specific website.
+
+Brand:
+KARTIFY ANIME
+
+Colors:
+
+- Background: #070B15
+- Secondary background: #0E1424
+- Cards: #141B2F
+- Primary purple: #713CFF
+- Electric blue: #168CFF
+- Text: #F3F5FF
+- Muted text: #9AA7C7
+
+Design requirements:
+
+- Cinematic hero banner.
+- High-quality anime poster cards.
+- Elegant gradients and subtle animations.
+- Clean typography.
+- Smooth transitions.
+- Responsive grid layouts.
+- Search with clear loading and empty states.
+- Skeleton loading placeholders.
+- Error and retry states.
+- Keyboard accessibility.
+- Reduced-motion support.
+- Arabic RTL layout as the default.
+- Optional English LTR mode.
+- Mobile-first design.
+
+Do not use random placeholder images or broken image URLs.
+
+Use genuine images only from permitted sources. Provide graceful fallbacks when an image is unavailable.
+
+Create a consistent logo and a cohesive brand identity.
+
+==================================================
+4. PUBLIC PAGES
+
+Implement the following pages:
+
+1. Home page
+   
+   - Featured anime.
+   - Trending anime.
+   - Recently updated titles.
+   - Popular anime.
+   - Top-rated anime.
+   - Current-season releases.
+   - Anime movies.
+   - Genre sections.
+   - Personalized recommendations when supported.
+
+2. Anime catalog
+   
+   - Pagination.
+   - Search.
+   - Sorting.
+   - Genre filters.
+   - Release-year filters.
+   - Format filters.
+   - Status filters.
+   - Language and subtitle filters only when data is verified.
+
+3. Anime details
+   
+   - Arabic and original titles.
+   - Poster and banner.
+   - Synopsis.
+   - Genres.
+   - Release year.
+   - Format.
+   - Episode count.
+   - Airing status.
+   - Ratings with attribution.
+   - Seasons.
+   - Episode listings.
+   - Official streaming providers when available.
+   - Related anime.
+
+4. Episode details
+   
+   - Episode number and title.
+   - Synopsis when available.
+   - Authorized playback sources.
+   - Official external watch links.
+   - Previous and next episode navigation.
+   - Watch progress when technically supported.
+
+5. Search results.
+
+6. Favorites and watchlist.
+
+7. Continue watching.
+
+8. User profile and settings.
+
+9. About, privacy policy, terms, and contact pages.
+
+10. Custom not-found and error pages.
+
+==================================================
+5. REAL ANIME METADATA
+
+Integrate AniList's official GraphQL API:
+
+https://graphql.anilist.co
+
+Documentation:
+https://docs.anilist.co/
+
+Use the API to retrieve available:
+
+- Titles.
+- Cover images.
+- Banner images.
+- Descriptions.
+- Genres.
+- Formats.
+- Release dates.
+- Episode counts.
+- Airing status.
+- Ratings.
+- Seasonal metadata.
+- Related titles.
+
+Implement:
+
+- Server-side requests.
+- Pagination.
+- Input validation.
+- Caching.
+- API error handling.
+- Rate-limit awareness.
+- Scheduled synchronization when a scheduler is configured.
+
+Do not assume that AniList supplies Arabic translations, episode video URLs, or Arabic dubbing information for every title.
+
+Use Jikan as an optional secondary metadata provider only where appropriate and compliant with its API terms.
+
+Create a provider abstraction so additional metadata sources can be integrated later.
+
+Persist synchronized metadata in the database when appropriate.
+
+Store external provider IDs to prevent duplicate anime records.
+
+Clearly distinguish:
+
+- Metadata retrieved from external APIs.
+- Information entered by an administrator.
+- Information that has not been verified.
+
+==================================================
+6. DATABASE SCHEMA
+
+Design migrations and appropriate indexes for these entities:
+
+profiles:
+
+- id
+- display_name
+- avatar_url
+- created_at
+
+anime:
+
+- id
+- provider
+- provider_id
+- slug
+- title
+- original_title
+- english_title
+- synopsis
+- poster_url
+- banner_url
+- genres
+- format
+- release_year
+- episode_count
+- airing_status
+- rating
+- metadata_language
+- last_synced_at
+- created_at
+- updated_at
+
+seasons:
+
+- id
+- anime_id
+- season_number
+- title
+- synopsis
+- created_at
+
+episodes:
+
+- id
+- anime_id
+- season_id
+- episode_number
+- title
+- synopsis
+- thumbnail_url
+- duration_seconds
+- created_at
+
+streaming_sources:
+
+- id
+- episode_id
+- provider_name
+- source_type
+- playback_url
+- language
+- subtitles_language
+- is_official
+- authorization_verified
+- is_active
+- created_at
+- updated_at
+
+favorites:
+
+- user_id
+- anime_id
+- created_at
+
+watch_progress:
+
+- user_id
+- episode_id
+- progress_seconds
+- completed
+- updated_at
+
+admin_audit_logs:
+
+- id
+- admin_user_id
+- action
+- entity_type
+- entity_id
+- created_at
+
+Use proper foreign keys, uniqueness constraints, indexes, and cascading behavior.
+
+Store genres in an appropriate relational or JSON representation and document the choice.
+
+Do not treat a metadata provider's episode count as proof that actual playable episode records exist.
+
+==================================================
+7. SECURE ADMIN DASHBOARD
+
+Create a complete Arabic admin dashboard.
+
+Required sections:
+
+A. Overview
+
+- Total anime records.
+- Total episode records.
+- Configured streaming sources.
+- Recently updated content.
+- Synchronization status.
+- Recent administrative activity.
+
+B. Anime management
+
+- Create records.
+- Edit records.
+- Delete records with confirmation.
+- Search and filter.
+- Inspect metadata provider IDs.
+- Trigger synchronization.
+- Identify duplicate records.
+
+C. Episode management
+
+- Create and edit episodes.
+- Manage episode numbers.
+- Add descriptions and thumbnails.
+- Associate episodes with seasons.
+- Never automatically invent playback links.
+
+D. Streaming source management
+
+- Add authorized sources.
+- Edit and remove sources.
+- Set language and subtitle metadata.
+- Enable or disable a source.
+- Validate URL structure.
+- Clearly label unverified sources.
+- Require explicit administrative confirmation of authorization.
+
+E. Metadata synchronization
+
+- Sync a single anime.
+- Sync a batch of anime.
+- Show success and failure counts.
+- Prevent duplicate records.
+- Record last-sync timestamps.
+- Handle API failures safely.
+
+F. User management
+
+- View registered users when authorized.
+- Suspend or reactivate accounts if supported.
+- Never expose user passwords.
+- Log sensitive administrative actions.
+
+G. Settings
+
+- Brand configuration.
+- Default language.
+- Metadata provider settings.
+- Synchronization settings.
+- Feature flags.
+
+ADMIN SECURITY:
+
+- No hardcoded production password.
+- No frontend-only password gate.
+- Verify every privileged action on the server.
+- Use Supabase Auth and role-based authorization.
+- Enforce Row Level Security.
+- Protect administrative routes.
+- Validate all inputs server-side.
+- Keep secrets in environment variables.
+- Log administrative changes.
+- Include a secure initial-admin setup procedure.
+
+==================================================
+8. VIDEO PLAYBACK
+
+Build a reusable playback component that supports authorized sources.
+
+Requirements:
+
+- HTML5 video where supported.
+- HLS playback using a compatible library where appropriate.
+- Clear unsupported-source errors.
+- Loading and retry states.
+- Previous and next episode controls.
+- Responsive player layout.
+- Subtitle support when authorized subtitle files exist.
+- Progress tracking for authenticated users.
+- External official watch links.
+
+Do not assume every M3U8 URL will play in every browser.
+
+Do not embed unofficial sources automatically.
+
+Do not proxy arbitrary URLs through the server. Protect against SSRF and unsafe redirects.
+
+Validate allowed source domains and protocols according to the configured policy.
+
+If no authorized source exists, display:
+"No authorized playback source is currently available."
+
+Provide an option to visit a legitimate external provider when a valid official link exists.
+
+==================================================
+9. USER FEATURES
+
+Implement:
+
+- Registration and login.
+- Logout.
+- User profile.
+- Favorites.
+- Watchlist.
+- Watch progress.
+- Continue watching.
+- Responsive mobile navigation.
+- Clear feedback when a feature requires authentication.
+
+Protect user-specific database records with RLS.
+
+Allow public browsing without requiring an account.
+
+==================================================
+10. AUTOMATION
+
+Build reliable metadata synchronization.
+
+Requirements:
+
+- A server-side synchronization function.
+- Configurable batch size.
+- Pagination.
+- Rate-limit handling.
+- Retry with backoff where appropriate.
+- Deduplication.
+- Sync status logging.
+- Last successful synchronization timestamp.
+- Safe recovery from partial failures.
+
+Provide a scheduled job configuration compatible with the selected hosting platform.
+
+Do not claim scheduled updates work until the scheduler has been configured and deployed.
+
+Do not automatically scrape third-party streaming sites.
+
+==================================================
+11. PERFORMANCE AND SEO
+
+Implement:
+
+- Server rendering where useful.
+- Metadata and canonical URLs.
+- Sitemap generation.
+- robots.txt.
+- Open Graph metadata.
+- Descriptive page titles.
+- Optimized images.
+- Lazy loading.
+- Database indexes.
+- Caching with sensible invalidation.
+- Pagination instead of loading the entire catalog.
+- Loading, empty, and error states.
+
+Never create fake ratings, fake viewer counts, or fake claims about available episodes.
+
+==================================================
+12. DEPLOYMENT
+
+Prepare the application for real deployment.
+
+Include:
+
+- .env.example with placeholders only.
+- Database migrations.
+- Supabase setup instructions.
+- AniList integration instructions.
+- Development instructions.
+- Production build instructions.
+- Deployment guide for a compatible hosting provider.
+- Initial administrator setup.
+- Backup and recovery guidance.
+- Security checklist.
+
+Never commit real secrets.
+
+Do not claim deployment has succeeded unless the application has actually been deployed and verified.
+
+==================================================
+13. TESTING
+
+Add meaningful tests for:
+
+- Metadata parsing.
+- Duplicate prevention.
+- Authentication and authorization.
+- Admin permissions.
+- Database access policies.
+- Search and filters.
+- Streaming-source validation.
+- Missing metadata.
+- API failures.
+- Empty catalog behavior.
+
+Run available lint, type checking, and build commands.
+
+Fix errors rather than hiding them.
+
+==================================================
+14. IMPLEMENTATION WORKFLOW
+
+Follow this workflow:
+
+1. Inspect the current repository.
+2. Identify the current framework and existing files.
+3. Create a concise implementation checklist.
+4. Build the application structure.
+5. Implement the database migrations and security policies.
+6. Implement authentication and admin authorization.
+7. Integrate real metadata APIs.
+8. Build public pages.
+9. Build the admin dashboard.
+10. Implement authorized playback support.
+11. Add tests and documentation.
+12. Run available checks.
+13. Fix discovered issues.
+14. Summarize what works, what requires credentials, and what remains incomplete.
+
+Work in manageable stages, but continue implementing without asking for approval after every file.
+
+If context or time limits are reached, leave a clear progress report and a prioritized next-step checklist.
+
+FINAL REQUIREMENT:
+
+The result must be a real, maintainable, Arabic-first anime discovery platform, not a static HTML mockup.
+
+Prioritize security, truthful data, maintainability, and actual functionality over decorative features.

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="KARTIFY ANIME">
+  <rect width="32" height="32" rx="8" fill="#070B15"/>
+  <path d="M9.2 6.2v19.6" stroke="#F3F5FF" stroke-width="5" stroke-linecap="round"/>
+  <path d="M11.4 16.1 21.6 7.6" stroke="#713CFF" stroke-width="4.4" stroke-linecap="round"/>
+  <path d="M11.4 16.1 23.2 25.4" stroke="#168CFF" stroke-width="4.4" stroke-linecap="round"/>
+  <circle cx="24.6" cy="6.6" r="2" fill="#168CFF"/>
+</svg>

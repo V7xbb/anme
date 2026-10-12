@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "كارتيفاي أنمي — KARTIFY ANIME",
+      "hasCanvas": false,
+      "bodyTextLen": 9165,
+      "bodyTextHash": "914eee9a5c8d5e5898d4d185c2f16c6c68a211c7f78592d8c76371d8577b1b05",
+      "bodyTextPrefix": "كارتيفاي أنمي عالمك، قصتك، أنميك. ابحث عن أنمي… الكتالوج مكتبتي ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "كارتيفاي أنمي — KARTIFY ANIME",
+      "hasCanvas": false,
+      "bodyTextLen": 9143,
+      "bodyTextHash": "e206609d7cff984ff9bdd9160c8c8a73cb229fad7e8c669d720592b9fb19e4b4",
+      "bodyTextPrefix": "كارتيفاي أنمي عالمك، قصتك، أنميك. English ابحث عن أنمي… عالمك، ق",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

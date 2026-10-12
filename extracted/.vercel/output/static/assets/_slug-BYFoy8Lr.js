@@ -1,0 +1,1 @@
+import{t as e}from"./site-shell-DNdANySY.js";import{o as t}from"./logo-k_WdWKqw.js";var n=t(),r=()=>(0,n.jsx)(e,{children:(0,n.jsx)(`h1`,{className:`text-3xl font-extrabold`,children:`العنوان غير موجود`})});export{r as notFoundComponent};
